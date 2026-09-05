@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Career Compass: Dark Navy + Electric Blue + Emerald */
+    --background: 0.1 0.025 265;
+    --foreground: 0.97 0.01 260;
+    --card: 0.15 0.03 262;
+    --card-foreground: 0.95 0.01 260;
+    --popover: 0.13 0.03 263;
+    --popover-foreground: 0.95 0.01 260;
+
+    /* Electric Blue primary */
+    --primary: 0.62 0.22 255;
+    --primary-foreground: 0.98 0 0;
+
+    /* Emerald secondary */
+    --secondary: 0.72 0.2 160;
+    --secondary-foreground: 0.08 0.01 260;
+
+    --muted: 0.2 0.025 263;
+    --muted-foreground: 0.65 0.04 260;
+    --accent: 0.72 0.2 160;
+    --accent-foreground: 0.08 0.01 260;
+
+    --destructive: 0.577 0.245 27;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.28 0.04 264;
+    --input: 0.22 0.035 263;
+    --ring: 0.62 0.22 255;
+
+    --chart-1: 0.62 0.22 255;
+    --chart-2: 0.72 0.2 160;
+    --chart-3: 0.78 0.18 70;
+    --chart-4: 0.65 0.22 290;
+    --chart-5: 0.68 0.2 200;
+
+    --sidebar: 0.12 0.03 263;
+    --sidebar-foreground: 0.95 0.01 260;
+    --sidebar-primary: 0.62 0.22 255;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.2 0.03 263;
+    --sidebar-accent-foreground: 0.95 0.01 260;
+    --sidebar-border: 0.28 0.04 264;
+    --sidebar-ring: 0.62 0.22 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.12 0.03 263);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.35 0.07 263);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.62 0.22 255);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, oklch(0.7 0.22 255), oklch(0.72 0.2 160));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass card */
+.glass-card {
+  background: oklch(0.15 0.03 262 / 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid oklch(0.35 0.06 264 / 0.4);
+}
+
+/* Glow effect */
+.glow-blue {
+  box-shadow: 0 0 20px oklch(0.62 0.22 255 / 0.3), 0 0 60px oklch(0.62 0.22 255 / 0.1);
+}
+.glow-green {
+  box-shadow: 0 0 20px oklch(0.72 0.2 160 / 0.3), 0 0 60px oklch(0.72 0.2 160 / 0.1);
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient {
+  background: linear-gradient(-45deg,
+    oklch(0.08 0.03 270),
+    oklch(0.12 0.06 255),
+    oklch(0.1 0.04 200),
+    oklch(0.08 0.03 270));
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Node pulse animation */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.node-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid oklch(0.62 0.22 255);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Fade in up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Progress bar shimmer */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
